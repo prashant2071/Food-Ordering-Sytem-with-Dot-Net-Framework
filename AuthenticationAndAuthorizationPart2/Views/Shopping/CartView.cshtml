@@ -1,0 +1,119 @@
+﻿@using AuthenticationAndAuthorizationPart2.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayoutPage.cshtml";
+}
+
+
+
+<div class="banner-top">
+
+    <div class="container">
+        <h3>Cart</h3>
+        <h4><a href="@Url.Action("Index", "Home")">Home</a><label>/</label>Cart</h4>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="check-out">
+    <div class="container">
+        <div class="spec ">
+            <h3>Cart List</h3>
+            <div class="ser-t">
+                <b></b>
+                <span><i></i></span>
+                <b class="line"></b>
+            </div>
+        </div>
+
+        @*<script>
+            $(document).ready(function (c) {
+                $('.close2').on('click', function (c) {
+                    $('.cross1').fadeOut('slow', function (c) {
+                        $('.cross1').remove();
+                    });
+                });
+            });
+        </script>*@
+
+        <table class="table ">
+
+            <tr>
+                <th class="t-head head-it ">Products</th>
+                <th class="t-head">Price</th>
+                <th class="t-head">Quantity</th>
+                <th class="t-head">Total</th>
+                <th class="t-head">Action</th>
+            </tr>
+            @{ int total = 0;}
+            @{
+
+
+               
+                List<tblCart> obj1 = Cart.GetAllCartItem(Convert.ToInt32(@Session["userid"])).ToList();
+                foreach (var item in obj1)
+                {
+
+
+                    <tr @*class="cross1-@item.CartId"*@ id="row-@item.CartId">
+                        <td class="ring-in t-data">
+                            <a href="#" class="at-in">
+                                <img src="~/ProductImage/@item.Photo" height="100" width="100" class="img-responsive" alt="">
+                            </a>
+                            <div class="sed">
+                                <h5>@item.ProductName</h5>
+                            </div>
+                            <div class="clearfix"> </div>
+
+                        </td>
+                        <td class="t-data">
+                            <div class="price">  @item.DiscountPrice </div>
+                            <input class="form-control" id="Price-@item.CartId" value="@item.DiscountPrice" style="display:none" disabled>
+
+                        </td>
+                        <td class="t-data">
+                            <input class="form-control" id="Quantity-@item.CartId" @*onchange=" return keychange('@item.CartId')"*@ onclick="return Quan('@item.CartId')" value="1" type="number" min="1" max="20" >
+
+                        </td>
+                        <td class="t-data">
+                            <input class="form-control" id="Total-@item.CartId" value="@item.DiscountPrice" readonly>
+                        </td>
+                        <td class="t-data">
+                            <a class="RemoveLink btn btn-danger " onclick="return Remove('@item.CartId');">
+                                Remove
+
+                            </a>
+                        </td>
+                        <td>
+                            @{
+
+                                total = total + Convert.ToInt32(@item.DiscountPrice);
+
+                            }
+                           
+
+                        </td>
+
+                    </tr>
+                                    }
+
+                                
+            }
+
+        </table>
+        <h3>Grand total :</h3>
+        <input class="form-control" id="grandtotal" value="@total" readonly>
+        <br />
+        <div>
+            <input class="form-control " style="display:none" readonly >
+            <a href="@Url.Action("checkout","Shopping")" class="btn btn-primary" onclick="checkout()"> Checkout</a>
+       </div>
+
+
+
+
+    </div>
+</div>
+
+<!--==============================quantity==================================-->
+<
+

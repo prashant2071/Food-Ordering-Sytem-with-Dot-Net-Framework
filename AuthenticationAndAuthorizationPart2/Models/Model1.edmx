@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NepalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiscountPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCatagory">
+          <Key>
+            <PropertyRef Name="CatagoryId" />
+          </Key>
+          <Property Name="CatagoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatagoryName" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CartId" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatagoryId" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsSpecial" Type="bit" />
+          <Property Name="DiscountPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Roles" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="AdditionalPhoneNumber" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUserRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblCart_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblCart">
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCart">
+              <PropertyRef Name="CartId" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblCatagory">
+          <End Role="tblCatagory" Type="Self.tblCatagory" Multiplicity="0..1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="CatagoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserRole_tblRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="0..1" />
+          <End Role="tblUserRole" Type="Self.tblUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="tblUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserRole_tblUser1">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblUserRole" Type="Self.tblUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NepalDBModelStoreContainer">
+          <EntitySet Name="tblCart" EntityType="Self.tblCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCatagory" EntityType="Self.tblCatagory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserRole" EntityType="Self.tblUserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblCart_tblUser" Association="Self.FK_tblCart_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblCart" EntitySet="tblCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblCart" Association="Self.FK_tblOrder_tblCart">
+            <End Role="tblCart" EntitySet="tblCart" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblCatagory" Association="Self.FK_tblProduct_tblCatagory">
+            <End Role="tblCatagory" EntitySet="tblCatagory" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserRole_tblRole" Association="Self.FK_tblUserRole_tblRole">
+            <End Role="tblRole" EntitySet="tblRole" />
+            <End Role="tblUserRole" EntitySet="tblUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserRole_tblUser1" Association="Self.FK_tblUserRole_tblUser1">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserRole" EntitySet="tblUserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NepalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountPrice" Type="Int32" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblCart_tblUser" FromRole="tblCart" ToRole="tblUser" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblCart" FromRole="tblCart" ToRole="tblOrder" />
+        </EntityType>
+        <EntityType Name="tblCatagory">
+          <Key>
+            <PropertyRef Name="CatagoryId" />
+          </Key>
+          <Property Name="CatagoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatagoryName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblCatagory" FromRole="tblCatagory" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <NavigationProperty Name="tblCart" Relationship="Self.FK_tblOrder_tblCart" FromRole="tblOrder" ToRole="tblCart" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatagoryId" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsSpecial" Type="Boolean" />
+          <Property Name="DiscountPrice" Type="Int32" />
+          <NavigationProperty Name="tblCatagory" Relationship="Self.FK_tblProduct_tblCatagory" FromRole="tblProduct" ToRole="tblCatagory" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Roles" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUserRoles" Relationship="Self.FK_tblUserRole_tblRole" FromRole="tblRole" ToRole="tblUserRole" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCarts" Relationship="Self.FK_tblCart_tblUser" FromRole="tblUser" ToRole="tblCart" />
+          <NavigationProperty Name="tblUserRoles" Relationship="Self.FK_tblUserRole_tblUser1" FromRole="tblUser" ToRole="tblUserRole" />
+        </EntityType>
+        <EntityType Name="tblUserRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK_tblUserRole_tblRole" FromRole="tblUserRole" ToRole="tblRole" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUserRole_tblUser1" FromRole="tblUserRole" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblCart_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblCart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblCart">
+          <End Role="tblCart" Type="Self.tblCart" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCart">
+              <PropertyRef Name="CartId" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblCatagory">
+          <End Role="tblCatagory" Type="Self.tblCatagory" Multiplicity="0..1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="CatagoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserRole_tblRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="0..1" />
+          <End Role="tblUserRole" Type="Self.tblUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="tblUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserRole_tblUser1">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblUserRole" Type="Self.tblUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NepalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
+          <EntitySet Name="tblCatagories" EntityType="Self.tblCatagory" />
+          <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserRoles" EntityType="Self.tblUserRole" />
+          <AssociationSet Name="FK_tblCart_tblUser" Association="Self.FK_tblCart_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblCart" EntitySet="tblCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblCart" Association="Self.FK_tblOrder_tblCart">
+            <End Role="tblCart" EntitySet="tblCarts" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblCatagory" Association="Self.FK_tblProduct_tblCatagory">
+            <End Role="tblCatagory" EntitySet="tblCatagories" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserRole_tblRole" Association="Self.FK_tblUserRole_tblRole">
+            <End Role="tblRole" EntitySet="tblRoles" />
+            <End Role="tblUserRole" EntitySet="tblUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserRole_tblUser1" Association="Self.FK_tblUserRole_tblUser1">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblUserRole" EntitySet="tblUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NepalDBModelStoreContainer" CdmEntityContainer="NepalDBEntities">
+          <EntitySetMapping Name="tblCarts">
+            <EntityTypeMapping TypeName="NepalDBModel.tblCart">
+              <MappingFragment StoreEntitySet="tblCart">
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCatagories">
+            <EntityTypeMapping TypeName="NepalDBModel.tblCatagory">
+              <MappingFragment StoreEntitySet="tblCatagory">
+                <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
+                <ScalarProperty Name="CatagoryName" ColumnName="CatagoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrders">
+            <EntityTypeMapping TypeName="NepalDBModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="NepalDBModel.tblProduct">
+              <MappingFragment StoreEntitySet="tblProduct">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="NepalDBModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="NepalDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AdditionalPhoneNumber" ColumnName="AdditionalPhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserRoles">
+            <EntityTypeMapping TypeName="NepalDBModel.tblUserRole">
+              <MappingFragment StoreEntitySet="tblUserRole">
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

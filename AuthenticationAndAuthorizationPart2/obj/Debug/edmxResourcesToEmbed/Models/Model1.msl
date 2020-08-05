@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NepalDBModelStoreContainer" CdmEntityContainer="NepalDBEntities">
+    <EntitySetMapping Name="tblCarts">
+      <EntityTypeMapping TypeName="NepalDBModel.tblCart">
+        <MappingFragment StoreEntitySet="tblCart">
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCatagories">
+      <EntityTypeMapping TypeName="NepalDBModel.tblCatagory">
+        <MappingFragment StoreEntitySet="tblCatagory">
+          <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
+          <ScalarProperty Name="CatagoryName" ColumnName="CatagoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrders">
+      <EntityTypeMapping TypeName="NepalDBModel.tblOrder">
+        <MappingFragment StoreEntitySet="tblOrder">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="NepalDBModel.tblProduct">
+        <MappingFragment StoreEntitySet="tblProduct">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+          <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="NepalDBModel.tblRole">
+        <MappingFragment StoreEntitySet="tblRole">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="NepalDBModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AdditionalPhoneNumber" ColumnName="AdditionalPhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserRoles">
+      <EntityTypeMapping TypeName="NepalDBModel.tblUserRole">
+        <MappingFragment StoreEntitySet="tblUserRole">
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e9430a52e501412bb901b965591edf9b" Name="Diagram1">
+        <EntityTypeShape EntityType="NepalDBModel.tblCart" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblCatagory" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblOrder" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblProduct" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblRole" Width="1.5" PointX="3.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblUser" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblUserRole" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="NepalDBModel.FK_tblCart_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="NepalDBModel.FK_tblOrder_tblCart" ManuallyRouted="false" />
+        <AssociationConnector Association="NepalDBModel.FK_tblProduct_tblCatagory" ManuallyRouted="false" />
+        <AssociationConnector Association="NepalDBModel.FK_tblUserRole_tblRole" ManuallyRouted="false" />
+        <AssociationConnector Association="NepalDBModel.FK_tblUserRole_tblUser1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
