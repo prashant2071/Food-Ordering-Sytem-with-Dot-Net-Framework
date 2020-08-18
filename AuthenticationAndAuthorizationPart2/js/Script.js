@@ -320,127 +320,27 @@ function Quan(produId) {
         }
     });
 }
-//function keychange(produId) {
-//    $.ajax({
-//        url: "/Shopping/Quan/" + produId,
-//        type: "GET",
-//        contentType: "application/json;charset=UTF-8",
-//        dataType: "json",
-//        success: function (data) {
-//            var id = data.CartId;
-//            if ($('#Quantity-' + id).val() > 1 && $('#Quantity-' + id).val() < 3) {
-//                var val1 = parseInt($('#Price-' + id).val());
-//                var val2 = parseInt($('#Quantity-' + id).val());
-//                //$('#Total-' + id).val() = val1*val2
-//                var val5 = val1 * val2;
-//                $('#Total-' + id).val(val1 * val2);
-//                var val4 = parseInt($('#grandtotal').val());;
-//                $('#grandtotal').val(val4 - val1 + val5);
-//                ;
+function checkout() {
+    var obj = {
+        Total: $('#grandtotal').val()
 
+    };
+    $.ajax({
+        url: "/Shopping/checkout",
+        data: JSON.stringify(obj),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
 
-//            };
-//            $('#Quantity-' + id).on("change", (function () {
-//                var val1 = parseFloat($('#Price-' + id).val());
-//                var val2 = parseInt($('#Quantity-' + id).val());
-//                var val5 = val1 * val2;
-//                var val6 = parseInt($('#Total-' + id).val());;
-//                $('#Total-' + id).val(val1 * val2);
-//                var val4 = parseInt($('#grandtotal').val());;
-//                $('#grandtotal').val(val4 - val6 + val5);
-
-
-
-
-//            }));
-//            $('#Quantity-' + id).keyup(function () {
-//                var val1 = parseFloat($('#Price-' + id).val());
-//                var val2 = parseInt($('#Quantity-' + id).val());
-//                if (val2 >= 1 && val < 21) {
-//                    var val5 = val1 * val2;
-//                    $('#Total-' + id).val(val1 * val2);
-//                    var val4 = parseInt($('#grandtotal').val());;
-//                    $('#grandtotal').val(val4 - val1 + val5);
-
-
-//                }
-
-//                else if ($('#Quantity-' + id).val().trim() == "") {
-//                    $('#Total-' + id).val(val1);
-//                }
-
-//                else {
-//                    $.notify(data.message, {
-//                        globalPosition: "top center",
-//                        className: "error"
-//                    })
-//                    $('#Total-' + id).val(val1);
-//                }
-//            }
-
-
-//            )
-//        },
-
-//        error: function (errormessage) {
-//            Swal.fire({
-//                icon: 'error',
-//                title: 'error',
-//                text: 'Something must be wrong check quantity!',
-//            })
-//        }
-//    });
-//}
-
-//function checkout() {
-//    $.ajax({
-//        url: "/Shopping/idcollect",
-//        data: JSON.stringify(obj),
-//        type: "POST",
-//        contentType: "application/json;charset=utf-8",
-//        dataType: "json",
-//        success: function (result) {
-//            result.forEach(myfunction)
-//            myfunction(item, index){
-//                var obj = {
-//                    Quantity-index: [($('#Quantity-' + item).val())]
-
-//            };
-
-//            }
-//        //       var obj = {
-           
-//        //  Quantity: [($('#Quantity-' + item).val())]
-
-//        //};
-
-
-//        }
-
-//    });
-         var obj = {
-
-             Total: [($('#grandtotal').val())]
-
-        };
-     
-        $.ajax({
-            url: "/Shopping/checkout",
-            data: JSON.stringify(obj),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'ORDERED',
-                    text: 'order  successfully!',
-                })
-            },
-            error: function (errormessage) {
-                alert(errormessage.responseText);
-            }
-        });
-    
-
+            Swal.fire({
+                icon: 'success',
+                title: 'Ordered successfuly',
+                text: 'User ordered successfully!',
+            })
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}

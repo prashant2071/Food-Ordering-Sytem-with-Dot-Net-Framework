@@ -26,9 +26,8 @@
       <EntityTypeMapping TypeName="NepalDBModel.tblOrder">
         <MappingFragment StoreEntitySet="tblOrder">
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Total" ColumnName="Total" />
         </MappingFragment>
       </EntityTypeMapping>

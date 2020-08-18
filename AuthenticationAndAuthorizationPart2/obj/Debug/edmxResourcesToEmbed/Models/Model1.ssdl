@@ -24,9 +24,8 @@
       <PropertyRef Name="OrderId" />
     </Key>
     <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CartId" Type="int" />
+    <Property Name="UserId" Type="int" />
     <Property Name="Date" Type="datetime" />
-    <Property Name="Quantity" Type="int" />
     <Property Name="Total" Type="int" />
   </EntityType>
   <EntityType Name="tblProduct">
@@ -58,7 +57,7 @@
     <Property Name="Password" Type="nvarchar" MaxLength="50" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
-    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="100" />
     <Property Name="AdditionalPhoneNumber" Type="nvarchar" MaxLength="20" />
   </EntityType>
@@ -82,15 +81,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblOrder_tblCart">
-    <End Role="tblCart" Type="Self.tblCart" Multiplicity="0..1" />
+  <Association Name="FK_tblOrder_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
     <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tblCart">
-        <PropertyRef Name="CartId" />
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="tblOrder">
-        <PropertyRef Name="CartId" />
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -142,8 +141,8 @@
       <End Role="tblUser" EntitySet="tblUser" />
       <End Role="tblCart" EntitySet="tblCart" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblOrder_tblCart" Association="Self.FK_tblOrder_tblCart">
-      <End Role="tblCart" EntitySet="tblCart" />
+    <AssociationSet Name="FK_tblOrder_tblUser" Association="Self.FK_tblOrder_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
       <End Role="tblOrder" EntitySet="tblOrder" />
     </AssociationSet>
     <AssociationSet Name="FK_tblProduct_tblCatagory" Association="Self.FK_tblProduct_tblCatagory">

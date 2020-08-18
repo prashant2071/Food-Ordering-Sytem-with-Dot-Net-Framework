@@ -144,7 +144,7 @@
          
                 <li><a href="@Url.Action("ManageCatagory","Catagory")"><em class="fa fa-align-justify">&nbsp;</em> Catagory</a></li>
                 <li><a href="@Url.Action("ManageProduct","Product")"><em class="fa fa-product-hunt">&nbsp;</em> Product</a></li>
-                <li><a href="elements.html"><em class="fa fa-cart-arrow-down">&nbsp;</em> Order</a></li>
+                <li><a href="@Url.Action("ManageOrder","Order")"><em class="fa fa-cart-arrow-down">&nbsp;</em> Order</a></li>
             
             @if (User.IsInRole("SuperAdmin"))
             {

@@ -14,12 +14,6 @@ namespace AuthenticationAndAuthorizationPart2.Models
     
     public partial class tblCart
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCart()
-        {
-            this.tblOrders = new HashSet<tblOrder>();
-        }
-    
         public int CartId { get; set; }
         public Nullable<int> UserId { get; set; }
         public Nullable<int> ProductId { get; set; }
@@ -29,7 +23,5 @@ namespace AuthenticationAndAuthorizationPart2.Models
         public Nullable<int> DiscountPrice { get; set; }
     
         public virtual tblUser tblUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrder> tblOrders { get; set; }
     }
 }

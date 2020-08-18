@@ -29,9 +29,8 @@
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CartId" Type="int" />
+          <Property Name="UserId" Type="int" />
           <Property Name="Date" Type="datetime" />
-          <Property Name="Quantity" Type="int" />
           <Property Name="Total" Type="int" />
         </EntityType>
         <EntityType Name="tblProduct">
@@ -63,7 +62,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="AdditionalPhoneNumber" Type="nvarchar" MaxLength="20" />
         </EntityType>
@@ -87,15 +86,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblOrder_tblCart">
-          <End Role="tblCart" Type="Self.tblCart" Multiplicity="0..1" />
+        <Association Name="FK_tblOrder_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
           <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblCart">
-              <PropertyRef Name="CartId" />
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="tblOrder">
-              <PropertyRef Name="CartId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -147,8 +146,8 @@
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblCart" EntitySet="tblCart" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblOrder_tblCart" Association="Self.FK_tblOrder_tblCart">
-            <End Role="tblCart" EntitySet="tblCart" />
+          <AssociationSet Name="FK_tblOrder_tblUser" Association="Self.FK_tblOrder_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblOrder" EntitySet="tblOrder" />
           </AssociationSet>
           <AssociationSet Name="FK_tblProduct_tblCatagory" Association="Self.FK_tblProduct_tblCatagory">
@@ -181,7 +180,6 @@
           <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiscountPrice" Type="Int32" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK_tblCart_tblUser" FromRole="tblCart" ToRole="tblUser" />
-          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblCart" FromRole="tblCart" ToRole="tblOrder" />
         </EntityType>
         <EntityType Name="tblCatagory">
           <Key>
@@ -196,11 +194,10 @@
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CartId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Quantity" Type="Int32" />
           <Property Name="Total" Type="Int32" />
-          <NavigationProperty Name="tblCart" Relationship="Self.FK_tblOrder_tblCart" FromRole="tblOrder" ToRole="tblCart" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUser" FromRole="tblOrder" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblProduct">
           <Key>
@@ -233,10 +230,11 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AdditionalPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblCarts" Relationship="Self.FK_tblCart_tblUser" FromRole="tblUser" ToRole="tblCart" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblUser" FromRole="tblUser" ToRole="tblOrder" />
           <NavigationProperty Name="tblUserRoles" Relationship="Self.FK_tblUserRole_tblUser1" FromRole="tblUser" ToRole="tblUserRole" />
         </EntityType>
         <EntityType Name="tblUserRole">
@@ -261,18 +259,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblOrder_tblCart">
-          <End Role="tblCart" Type="Self.tblCart" Multiplicity="0..1" />
-          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCart">
-              <PropertyRef Name="CartId" />
-            </Principal>
-            <Dependent Role="tblOrder">
-              <PropertyRef Name="CartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblProduct_tblCatagory">
           <End Role="tblCatagory" Type="Self.tblCatagory" Multiplicity="0..1" />
           <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
@@ -282,6 +268,18 @@
             </Principal>
             <Dependent Role="tblProduct">
               <PropertyRef Name="CatagoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -321,13 +319,13 @@
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblCart" EntitySet="tblCarts" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblOrder_tblCart" Association="Self.FK_tblOrder_tblCart">
-            <End Role="tblCart" EntitySet="tblCarts" />
-            <End Role="tblOrder" EntitySet="tblOrders" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblProduct_tblCatagory" Association="Self.FK_tblProduct_tblCatagory">
             <End Role="tblCatagory" EntitySet="tblCatagories" />
             <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUser" Association="Self.FK_tblOrder_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_tblUserRole_tblRole" Association="Self.FK_tblUserRole_tblRole">
             <End Role="tblRole" EntitySet="tblRoles" />
@@ -369,9 +367,8 @@
             <EntityTypeMapping TypeName="NepalDBModel.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
               </MappingFragment>
             </EntityTypeMapping>

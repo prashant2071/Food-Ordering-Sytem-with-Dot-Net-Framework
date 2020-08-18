@@ -15,11 +15,10 @@ namespace AuthenticationAndAuthorizationPart2.Models
     public partial class tblOrder
     {
         public int OrderId { get; set; }
-        public Nullable<int> CartId { get; set; }
+        public Nullable<int> UserId { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> Quantity { get; set; }
         public Nullable<int> Total { get; set; }
     
-        public virtual tblCart tblCart { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

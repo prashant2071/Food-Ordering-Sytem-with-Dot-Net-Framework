@@ -43,7 +43,7 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
                 return Json(new { success = true, message = "Added to cart Successfully", JsonRequestBehavior.AllowGet });
             }
         }
-       
+
         //[HttpPost]
         //public ActionResult Checkout()
         //{
@@ -57,7 +57,7 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
-            tblCart tb = db.tblCarts.Where(a=>a.CartId==id).FirstOrDefault();
+            tblCart tb = db.tblCarts.Where(a => a.CartId == id).FirstOrDefault();
             db.tblCarts.Remove(tb);
             db.SaveChanges();
             string productName = tb.ProductName;
@@ -68,7 +68,7 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
 
                 DeleteId = id
             };
-            return Json(results, JsonRequestBehavior.AllowGet );
+            return Json(results, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Quan(int id)
         {
@@ -91,15 +91,11 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
         public ActionResult checkout(tblOrder tb1)
         {
             tblOrder tb = new tblOrder();
-            //tb.Quantity= Convert.ToInt32(Menu.userid);
-            List<tblCart> obj = db.tblCarts.Where(a => a.UserId == Convert.ToInt32(Menu.userid)).ToList(); // if have to select only one thing from  the list then syntax is .Select
-            foreach (var item in obj)
-            {
-                tb.CartId = Convert.ToInt32(item.CartId);
-                db.tblOrders.Add(tb);
-            }
-            return Json(db.SaveChanges(), Url.Action("Index", "Home"), JsonRequestBehavior.AllowGet);
+            tb.UserId = Convert.ToInt32(Session["userid"]); // if have to select only one thing from  the list then syntax is .Select
+            tb.Date = DateTime.Now;
+            tb.Total = tb1.Total;
+            db.tblOrders.Add(tb);   
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
     }
 }
-    

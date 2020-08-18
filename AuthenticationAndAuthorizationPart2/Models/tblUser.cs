@@ -18,6 +18,7 @@ namespace AuthenticationAndAuthorizationPart2.Models
         public tblUser()
         {
             this.tblCarts = new HashSet<tblCart>();
+            this.tblOrders = new HashSet<tblOrder>();
             this.tblUserRoles = new HashSet<tblUserRole>();
         }
     
@@ -32,6 +33,8 @@ namespace AuthenticationAndAuthorizationPart2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCart> tblCarts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrder> tblOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUserRole> tblUserRoles { get; set; }
     }

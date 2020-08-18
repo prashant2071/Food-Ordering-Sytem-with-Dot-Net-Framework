@@ -141,6 +141,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatagoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +192,7 @@
     <Compile Include="ViewModel\ChangePasswordView.cs" />
     <Compile Include="Models\ItemDB.cs" />
     <Compile Include="ViewModel\loginView.cs" />
+    <Compile Include="ViewModel\OrderItemView.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductView.cs" />
     <Compile Include="ViewModel\QuantityViewModel.cs" />
@@ -412,6 +414,10 @@
     <Content Include="Views\Home\_ViewItem.cshtml" />
     <Content Include="Views\Account\login.cshtml" />
     <Content Include="Views\Shopping\CartView.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\ManageOrder.cshtml" />
+    <Content Include="Views\Order\AddOrEdit.cshtml" />
+    <Content Include="Views\Order\itemShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
