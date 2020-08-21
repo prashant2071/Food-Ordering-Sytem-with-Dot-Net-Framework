@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="93fc83c2d93e4bdc9fcb4d0e16074bd7" Name="Diagram1">
-        <EntityTypeShape EntityType="NepalDBModel.tblCart" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NepalDBModel.tblCatagory" Width="1.5" PointX="5.75" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NepalDBModel.tblOrder" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NepalDBModel.tblProduct" Width="1.5" PointX="8" PointY="9.25" IsExpanded="true" />
+      <Diagram DiagramId="977e1f04cdd649d0b4e1c96bf1f694fe" Name="Diagram1">
+        <EntityTypeShape EntityType="NepalDBModel.tblCart" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblCatagory" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblOrder" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblOrderDetail" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="NepalDBModel.tblProduct" Width="1.5" PointX="8" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NepalDBModel.tblRole" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NepalDBModel.tblUser" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="NepalDBModel.tblUserRole" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />

@@ -1,38 +1,59 @@
-﻿@model AuthenticationAndAuthorizationPart2.ViewModel.OrderItemView
+﻿@model AuthenticationAndAuthorizationPart2.Models.tblOrder
 
 @{
-    Layout = null;
+    ViewBag.Title = "itemShow";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
-@using (Html.BeginForm("AddOrEdit", "Catagory", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
-{
-    @Html.AntiForgeryToken()
-    @{
 
+<h2>itemShow</h2>
 
+<div>
+    <h4>tblOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
 
-        foreach (var item in model =>model)
-        {
-            <div class="form-horizontal">
-                <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
 
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.ProductId)
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model., htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CatagoryName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </div>
-            </div>
-            }
-        }
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orderlist)
+        </dt>
+
+        <dd>
+           <input type="text" class="form-control" value=" @Html.DisplayFor(model => model.orderlist)"/> 
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "ManageOrder")
+</p>

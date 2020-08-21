@@ -29,6 +29,15 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="orderlist" ColumnName="orderlist" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrderDetails">
+      <EntityTypeMapping TypeName="NepalDBModel.tblOrderDetail">
+        <MappingFragment StoreEntitySet="tblOrderDetails">
+          <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -32,6 +32,14 @@
           <Property Name="UserId" Type="int" />
           <Property Name="Date" Type="datetime" />
           <Property Name="Total" Type="int" />
+          <Property Name="orderlist" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tblOrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
         </EntityType>
         <EntityType Name="tblProduct">
           <Key>
@@ -138,6 +146,7 @@
           <EntitySet Name="tblCart" EntityType="Self.tblCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCatagory" EntityType="Self.tblCatagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
@@ -197,7 +206,15 @@
           <Property Name="UserId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Total" Type="Int32" />
+          <Property Name="orderlist" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUser" FromRole="tblOrder" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblOrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblProduct">
           <Key>
@@ -311,6 +328,7 @@
           <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
           <EntitySet Name="tblCatagories" EntityType="Self.tblCatagory" />
           <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+          <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetail" />
           <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
           <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
@@ -370,6 +388,15 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="orderlist" ColumnName="orderlist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderDetails">
+            <EntityTypeMapping TypeName="NepalDBModel.tblOrderDetail">
+              <MappingFragment StoreEntitySet="tblOrderDetails">
+                <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

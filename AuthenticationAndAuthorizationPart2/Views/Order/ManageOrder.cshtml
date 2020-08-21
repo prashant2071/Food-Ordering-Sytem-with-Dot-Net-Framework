@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ManageOrder";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
@@ -45,8 +44,8 @@
                                 <th>Phone number</th>
                                 <th>Address</th>
                                 <th>Total</th>
-
                                 <th>Action</th>
+
                             </tr>
                         </thead>
 
@@ -85,12 +84,14 @@
                         "datatype": "json"
                     },
                     "columns": [
-                        //{ "data": "ProductId" },
+                        //{ "data": "OrderId" },
 
                         { "data": "FullName" },
                         { "data": "PhoneNumber" },
                         { "data": "Address" },
                         { "data": "Total" },
+                        //{ "data": "orderlist" },
+
                         
                         //{
                         //    "data": "Photo",
@@ -102,7 +103,7 @@
 
                              {
                                  "data": "UserId", "render": function (data) {
-                                     return "<a class='btn btn-default btn-sm' href='@Url.Action("itemView","Order")/" + data + "')><i class='fa fa-eye'></i> ItemList</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>";
+                                     return "<a class='btn btn-default btn-sm' href='@Url.Action("itemShow","Order")/" + data + "')><i class='fa fa-eye'></i> Item</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>";
                                     @*return "<a class='btn btn-default btn-sm' href='@Url.Action("itemView","Order") onclick="return Remove('+ data+');"><i class='fa fa-eye'></i> ItemList</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>";*@
 
                                  },
@@ -204,7 +205,7 @@
             {
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("Delete","Product")/' + id,
+                    url: '@Url.Action("Delete","Order")/' + id,
                     success: function (data) {
                         if (data.success)
                         {

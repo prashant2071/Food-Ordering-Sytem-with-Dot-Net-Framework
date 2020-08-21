@@ -174,6 +174,9 @@
     <Compile Include="Models\tblOrder.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblOrderDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblProduct.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -350,12 +353,12 @@
     <Content Include="Online\js\modernizr.custom.js" />
     <Content Include="Online\js\move-top.js" />
     <Content Include="js\sweet-alert.js" />
-    <Content Include="ProductImage\aarohi.JPG" />
     <Content Include="ProductImage\americandessert.jpg" />
     <Content Include="ProductImage\buffburgerwithcoke.jpg" />
     <Content Include="ProductImage\buffsekuwa.jpg" />
     <Content Include="ProductImage\buffwithcheese.jpg" />
     <Content Include="ProductImage\cheesepizza.jpg" />
+    <Content Include="restruantImage\chef.jpg" />
     <Content Include="ProductImage\chickenpizza.jpg" />
     <Content Include="ProductImage\chickensekuwa.jpg" />
     <Content Include="ProductImage\chivas regal.jpg" />
@@ -377,6 +380,7 @@
     <Content Include="ProductImage\tandoorichicken.jpg" />
     <Content Include="ProductImage\vegburg.jpg" />
     <Content Include="ProductImage\vodka.jpg" />
+    <Content Include="restruantImage\staff.jpg" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <EntityDeploy Include="Models\Model1.edmx">
@@ -414,10 +418,11 @@
     <Content Include="Views\Home\_ViewItem.cshtml" />
     <Content Include="Views\Account\login.cshtml" />
     <Content Include="Views\Shopping\CartView.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\ManageOrder.cshtml" />
     <Content Include="Views\Order\AddOrEdit.cshtml" />
     <Content Include="Views\Order\itemShow.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

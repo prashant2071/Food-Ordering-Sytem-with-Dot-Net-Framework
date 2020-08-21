@@ -47,19 +47,13 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
         {
             return PartialView("_ViewItem", _db.tblProducts.Find(id));
         }
-        //public ActionResult loginCheck(tblUser tb)
-        //{
-           
-        //        tblUser tbl = db.tblUsers.Where(a => a.Email == tb.Email && a.Password == tb.Password).FirstOrDefault();
-        //    if (tbl != null)
-        //    {
-        //        return RedirectToAction("login", "Account");
-        //    }
-
-        //    else
-        //    {
-        //        return RedirectToAction("ProductList");
-        //    }
-        //}
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

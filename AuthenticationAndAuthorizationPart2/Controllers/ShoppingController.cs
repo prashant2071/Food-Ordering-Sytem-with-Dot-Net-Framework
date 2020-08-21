@@ -94,6 +94,7 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
             tb.UserId = Convert.ToInt32(Session["userid"]); // if have to select only one thing from  the list then syntax is .Select
             tb.Date = DateTime.Now;
             tb.Total = tb1.Total;
+            tb.orderlist = tb1.orderlist;
             db.tblOrders.Add(tb);   
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }

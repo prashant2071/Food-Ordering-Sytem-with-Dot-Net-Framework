@@ -35,78 +35,88 @@
             });
         </script>*@
 
-        <table class="table ">
+    <table class="table ">
 
-            <tr>
-                <th class="t-head head-it ">Products</th>
-                <th class="t-head">Price</th>
-                <th class="t-head">Quantity</th>
-                <th class="t-head">Total</th>
-                <th class="t-head">Action</th>
-            </tr>
-            @{ int total = 0;}
-            @{
-
-
-               
-                List<tblCart> obj1 = Cart.GetAllCartItem(Convert.ToInt32(@Session["userid"])).ToList();
-                foreach (var item in obj1)
-                {
+        <tr>
+            <th class="t-head head-it ">Products</th>
+            <th class="t-head">Price</th>
+            <th class="t-head">Quantity</th>
+            <th class="t-head">Total</th>
+            <th class="t-head">Action</th>
+        </tr>
+        @{ int total = 0;}
+        @{string productss = " "; }
+        @*@{string quans = " "; }*@
+        @{
 
 
-                    <tr @*class="cross1-@item.CartId"*@ id="row-@item.CartId">
-                        <td class="ring-in t-data">
-                            <a href="#" class="at-in">
-                                <img src="~/ProductImage/@item.Photo" height="100" width="100" class="img-responsive" alt="">
-                            </a>
-                            <div class="sed">
-                                <h5>@item.ProductName</h5>
-                            </div>
-                            <div class="clearfix"> </div>
 
-                        </td>
-                        <td class="t-data">
-                            <div class="price">  @item.DiscountPrice </div>
-                            <input class="form-control" id="Price-@item.CartId" value="@item.DiscountPrice" style="display:none" disabled>
+            List<tblCart> obj1 = Cart.GetAllCartItem(Convert.ToInt32(@Session["userid"])).ToList();
+            foreach (var item in obj1)
+            {
 
-                        </td>
-                        <td class="t-data">
-                            <input class="form-control" id="Quantity-@item.CartId" @*onchange=" return keychange('@item.CartId')"*@ onclick="return Quan('@item.CartId')" value="1" type="number" min="1" max="20" >
 
-                        </td>
-                        <td class="t-data">
-                            <input class="form-control" id="Total-@item.CartId" value="@item.DiscountPrice" readonly>
-                        </td>
-                        <td class="t-data">
-                            <a class="RemoveLink btn btn-danger " onclick="return Remove('@item.CartId');">
-                                Remove
+                <tr @*class="cross1-@item.CartId"*@ id="row-@item.CartId">
+                    <td class="ring-in t-data">
+                        <a href="#" class="at-in">
+                            <img src="~/ProductImage/@item.Photo" height="100" width="100" class="img-responsive" alt="">
+                        </a>
+                        <div class="sed">
+                            <h5>@item.ProductName</h5>
+                        </div>
+                        <div class="clearfix"> </div>
 
-                            </a>
-                        </td>
-                        <td>
-                            @{
+                    </td>
+                    <td class="t-data">
+                        <div class="price">  @item.DiscountPrice </div>
+                        <input class="form-control" id="Price-@item.CartId" value="@item.DiscountPrice" style="display:none" disabled>
 
-                                total = total + Convert.ToInt32(@item.DiscountPrice);
+                    </td>
+                    <td class="t-data">
+                        <input class="form-control" id="Quantity-@item.CartId" @*onchange=" return keychange('@item.CartId')"*@ onclick="return Quan('@item.CartId')" value="1" type="number" min="1" max="20">
 
-                            }
-                           
+                    </td>
+                    <td class="t-data">
+                        <input class="form-control" id="Total-@item.CartId" value="@item.DiscountPrice" readonly>
+                    </td>
 
-                        </td>
+                    <td class="t-data">
+                        <a class="RemoveLink btn btn-danger " onclick="return Remove('@item.CartId');">
+                            Remove
 
-                    </tr>
-                                    }
+                        </a>
+                    </td>
+                    <td>
+                        @{
 
-                                
+                            total = total + Convert.ToInt32(@item.DiscountPrice);
+
+                        }
+                        @{
+                            productss = productss + " " + @item.ProductName + " " + @item.DiscountPrice + ' '+ ",";
+                        }
+
+
+                    </td>
+
+
+                </tr>
             }
 
-        </table>
+
+        }
+
+    </table>
         <h3>Grand total :</h3>
         <input class="form-control" id="grandtotal" value="@total" readonly>
+        
+            <input class="form-control" id="itemslist" value="@productss" readonly>
+        
         <br />
         <div>
-            <input class="form-control " style="display:none" readonly >
+            <input class="form-control " style="display:none" readonly>
             <a href="@Url.Action("Index","Home")" class="btn btn-primary" onclick="checkout()"> Checkout</a>
-       </div>
+        </div>
 
 
 

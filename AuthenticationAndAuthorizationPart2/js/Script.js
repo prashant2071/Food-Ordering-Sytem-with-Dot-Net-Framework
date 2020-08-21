@@ -322,7 +322,8 @@ function Quan(produId) {
 }
 function checkout() {
     var obj = {
-        Total: $('#grandtotal').val()
+        Total: $('#grandtotal').val(),
+        orderlist: $('#itemslist').val()
 
     };
     $.ajax({

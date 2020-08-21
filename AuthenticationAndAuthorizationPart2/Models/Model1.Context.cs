@@ -28,6 +28,7 @@ namespace AuthenticationAndAuthorizationPart2.Models
         public virtual DbSet<tblCart> tblCarts { get; set; }
         public virtual DbSet<tblCatagory> tblCatagories { get; set; }
         public virtual DbSet<tblOrder> tblOrders { get; set; }
+        public virtual DbSet<tblOrderDetail> tblOrderDetails { get; set; }
         public virtual DbSet<tblProduct> tblProducts { get; set; }
         public virtual DbSet<tblRole> tblRoles { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }

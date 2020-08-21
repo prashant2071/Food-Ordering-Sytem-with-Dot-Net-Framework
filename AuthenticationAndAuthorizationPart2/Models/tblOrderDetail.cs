@@ -12,14 +12,9 @@ namespace AuthenticationAndAuthorizationPart2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblOrder
+    public partial class tblOrderDetail
     {
-        public int OrderId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> Total { get; set; }
-        public string orderlist { get; set; }
-    
-        public virtual tblUser tblUser { get; set; }
+        public int OrderDetailsId { get; set; }
+        public Nullable<int> ProductId { get; set; }
     }
 }

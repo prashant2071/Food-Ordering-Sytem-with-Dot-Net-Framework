@@ -33,14 +33,10 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
         public ActionResult itemShow(int id)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            List<tblCart> lst = db.tblCarts.Where(a => a.UserId == id).ToList();
-            List<OrderItemView> lstitem = new List<OrderItemView>();
+            tblOrder tb = db.tblOrders.Where(a => a.UserId == id).FirstOrDefault();
 
-            foreach (var item in lst)
-            {
-                lstitem.Add(new OrderItemView() { ProductName = item.ProductName, photo = item.Photo, price = item.DiscountPrice.Value });
-            }
-            return View(lstitem);
+
+            return View(tb);
             }
 
            
@@ -54,7 +50,17 @@ namespace AuthenticationAndAuthorizationPart2.Controllers
 
             
         }
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            tblOrder tb = db.tblOrders.Where(a => a.UserId == id).FirstOrDefault();
+            db.tblOrders.Remove(tb);
+            db.SaveChanges();
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+                
+            
+        }
 
-     
+    
     }
 }

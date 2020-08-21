@@ -29,7 +29,15 @@
     <Property Name="UserId" Type="Int32" />
     <Property Name="Date" Type="DateTime" Precision="3" />
     <Property Name="Total" Type="Int32" />
+    <Property Name="orderlist" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUser" FromRole="tblOrder" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblOrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailsId" />
+    </Key>
+    <Property Name="OrderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
   </EntityType>
   <EntityType Name="tblProduct">
     <Key>
@@ -143,6 +151,7 @@
     <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
     <EntitySet Name="tblCatagories" EntityType="Self.tblCatagory" />
     <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetail" />
     <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
     <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
     <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
